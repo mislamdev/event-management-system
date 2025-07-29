@@ -1,0 +1,24 @@
+{% extends 'event_app/base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">
+        {# Check if the 'object' exists. If it does, we are updating. If not, we are creating. #}
+        {% if object %}
+            Update {{ model_name }}
+        {% else %}
+            Add New {{ model_name }}
+        {% endif %}
+    </h1>
+    <form method="post">
+        {% csrf_token %}
+
+        {# Render the form fields. Using as_p wraps each field in a <p> tag. #}
+        {{ form.as_p }}
+
+        <div class="mt-6">
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

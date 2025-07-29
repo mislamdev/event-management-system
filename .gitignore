@@ -205,3 +205,28 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Marimo cache
+.marimo_cache/
+# Marimo build artifacts
+.marimo_build/
+# Marimo virtual environment
+.marimo_venv/
+# Marimo configuration
+.marimo.toml
+# Marimo lock file
+.marimo.lock
+# Marimo project metadata
+.marimo.json
+# Marimo database
+.marimo.db
+# Marimo logs
+.marimo.log
+# Marimo cache for Jupyter notebooks
+.marimo_notebook_cache/
+# Marimo cache for Python files
+.marimo_python_cache/
+
+# Migrations folders all the files and directories except the __init__.py file
+migrations/*
+!migrations/__init__.py

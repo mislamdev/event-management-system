@@ -1,0 +1,24 @@
+[project]
+name = "event-management-system"
+version = "0.1.0"
+description = "An Event Management System built using Django and PostgreSQL to help event organizers manage, track, and optimize events. This system allows users to register for events, view event details, and manage event attendance seamlessly. Organizers can handle event creation, registrations, payments (if required), and attendee management."
+authors = [
+    {name = "mislamdev",email = "mislamdev@mitech.stream"}
+]
+license = {text = "Proprietary"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "django (>=5.2.4,<6.0.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "celery (>=5.5.3,<6.0.0)",
+    "django-celery-beat (>=2.6.0,<3.0.0)",
+    "django-celery-results (>=2.6.0,<3.0.0)",
+    "redis (>=5.0.1,<6.0.0)",
+    "psycopg2-binary (>=2.9.6,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

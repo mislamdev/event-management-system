@@ -1,0 +1,47 @@
+{% extends 'event_app/base.html' %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Organizer Dashboard</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="?filter=total" class="bg-blue-500 text-white p-6 rounded-lg shadow-md hover:bg-blue-600 transition">
+            <h2 class="text-xl font-semibold">Total Events</h2>
+            <p class="text-3xl font-bold">{{ total_events }}</p>
+        </a>
+        <a href="#" class="bg-green-500 text-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Total Participants</h2>
+            <p class="text-3xl font-bold">{{ total_participants }}</p>
+        </a>
+        <a href="?filter=upcoming" class="bg-yellow-500 text-white p-6 rounded-lg shadow-md hover:bg-yellow-600 transition">
+            <h2 class="text-xl font-semibold">Upcoming Events</h2>
+            <p class="text-3xl font-bold">{{ upcoming_events_count }}</p>
+        </a>
+        <a href="?filter=past" class="bg-red-500 text-white p-6 rounded-lg shadow-md hover:bg-red-600 transition">
+            <h2 class="text-xl font-semibold">Past Events</h2>
+            <p class="text-3xl font-bold">{{ past_events_count }}</p>
+        </a>
+    </div>
+</div>
+
+<div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 capitalize">{{ filter_type|default:"Today's" }} Events</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        {% if events_list %}
+            <ul class="space-y-4">
+                {% for event in events_list %}
+                <li class="border-b pb-2 flex justify-between items-center">
+                    <div>
+                        <a href="{% url 'event-detail' event.pk %}" class="text-lg font-semibold text-blue-600 hover:underline">{{ event.name }}</a>
+                        <p class="text-sm text-gray-500">{{ event.date }} at {{ event.time }} - {{ event.location }}</p>
+                    </div>
+                    <span class="text-sm font-medium bg-gray-200 text-gray-700 px-3 py-1 rounded-full">{{ event.category.name }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-500">No events to display for this filter.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

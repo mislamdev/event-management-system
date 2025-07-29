@@ -1,0 +1,35 @@
+{% extends 'event_app/base.html' %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Events</h1>
+    <a href="{% url 'event-add' %}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Add New Event</a>
+</div>
+
+<form method="get" class="bg-white p-4 rounded-lg shadow-md mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input type="text" name="search" placeholder="Search by name or location..." class="p-2 border rounded-lg" value="{{ request.GET.search }}">
+        <input type="date" name="start_date" class="p-2 border rounded-lg" value="{{ request.GET.start_date }}">
+        <input type="date" name="end_date" class="p-2 border rounded-lg" value="{{ request.GET.end_date }}">
+    </div>
+    <div class="mt-4 text-right">
+        <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900">Filter</button>
+    </div>
+</form>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for event in events %}
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-6">
+            <h2 class="text-xl font-bold mb-2">{{ event.name }}</h2>
+            <p class="text-gray-600 text-sm mb-1"><strong>Category:</strong> {{ event.category.name }}</p>
+            <p class="text-gray-600 text-sm mb-1"><strong>Date:</strong> {{ event.date }}</p>
+            <p class="text-gray-600 text-sm mb-4"><strong>Participants:</strong> {{ event.participants.count }}</p>
+            <a href="{% url 'event-detail' event.pk %}" class="text-blue-600 hover:underline">View Details</a>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-gray-500">No events found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
